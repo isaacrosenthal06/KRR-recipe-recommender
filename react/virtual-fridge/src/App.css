@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo img {
+  width: 700px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #FFFFFF;
-  min-height: 100vh;
+.box-main {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #000000;
+  max-width: 80%;
+  margin: auto;
+  height: 300%;
 }
 
-.App-link {
-  color: #000000;
+.text-title {
+  color:rgb(15, 53, 27);
+  font-weight: 500;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 
+  'Helvetica Neue', sans-serif;
+  font-size: 50px;
+  align-items: center;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text-big {
+  color:rgb(15, 53, 27);
+  font-weight: 400;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 
+  'Helvetica Neue', sans-serif;
+  font-size: 30px;
 }
+
+.text-small {
+  color:rgb(15, 53, 27);
+  font-size: 18px;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 
+  'Helvetica Neue', sans-serif;
+  font-weight: 200;
+  height: 100%;
+  
+}
+
+
+.section {
+  flex-direction: column;
+  height: 200%;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  justify-content: space-between;
+  padding: 5%;
+  align-items: stretch;
+}
+
+.box-recipes {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80%;
+  margin: auto;
+  height: 300%;
+}
+
+.recipes-section {
+  flex-direction: column;
+  height: 200%;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  justify-content: space-between;
+  /* padding: 1%; */
+  align-items: stretch;
+}
+
