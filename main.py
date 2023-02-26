@@ -18,6 +18,20 @@ with onto:
     class Vegetable(Produce): pass
     class Herb(Produce): pass
 
+    #subclassing condiments
+    class Oil(Condiment): pass
+    class Sauce(Condiment): pass
+    class Spice(Condiment): pass
+
+    #subclassing oil
+    class OliveOil(Oil): pass
+    class CanolaOil(Oil): pass
+    class Lard(Oil): pass
+
+    #subclassing 
+    class Salt(Spices): pass
+    class Pepper(Spices): pass
+
 
     
     class Dark_Roast(Roast): pass
