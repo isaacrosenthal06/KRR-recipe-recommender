@@ -25,8 +25,33 @@ with onto:
     class Pasta(Grain): pass
     class Rice(Grain): pass
 
+<<<<<<< HEAD
     class Lactose(Dairy): pass
     class NonLactose(Dairy): pass
+=======
+
+    class Seafood(Meat): pass
+    class RedMeat(Meat): pass
+    class WhiteMeat(Meat): pass
+
+    class Fish(Seafood): pass
+    class Shellfish(Seafood): pass
+
+    class Pork(RedMeat): pass
+    class Lamb(RedMeat): pass
+    class Beef(RedMeat): pass
+
+    class Duck(WhiteMeat): pass
+    class Chicken(WhiteMeat): pass
+    class Turkey(WhiteMeat): pass
+
+    
+    class Region(Thing): pass
+    
+    class Latin_America(Region): pass
+    class Asia_Pacific(Region): pass
+    class Multi(Region): pass
+>>>>>>> 7fce0ee6dd3895d91c422385edc804cf84d71222
     
     
     #defining the relationship between coffee and roast
