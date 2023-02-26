@@ -19,11 +19,22 @@ with onto:
     class Herb(Produce): pass
 
 
-    
-    class Dark_Roast(Roast): pass
-    class Blonde_Roast(Roast): pass
-    class Medium_Roast(Roast): pass
-    
+
+    class Seafood(Meat): pass
+    class RedMeat(Meat): pass
+    class WhiteMeat(Meat): pass
+
+    class Fish(Seafood): pass
+    class Shellfish(Seafood): pass
+
+    class Pork(RedMeat): pass
+    class Lamb(RedMeat): pass
+    class Beef(RedMeat): pass
+
+    class Duck(WhiteMeat): pass
+    class Chicken(WhiteMeat): pass
+    class Turkey(WhiteMeat): pass
+
     
     class Region(Thing): pass
     
