@@ -1,0 +1,263 @@
+(in-microtheory KRR-Recipe-FactsMt)
+(isa KRR-Recipe-FactsMt Microtheory)
+(genlMt KRR-Recipe-FactsMt BaseKB) 
+(genlMt KRR-Recipe-FactsMt UniversalVocabularyMt)
+(genlMt KRR-Recipe-FactsMt KRR-Recipe-RulesMt) 
+
+       										
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ENTITIES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;defining recipe ingredient 
+(isa RecipeIngredient ObjectType)
+(genls RecipeIngredient Instructions)
+;;(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
+
+
+;;defining the requiredrecipeingredient collection
+(isa RequiredRecipeIngredient ObjectType)
+(genls RequiredRecipeIngredient Instructions)
+;;(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
+
+;;defining the optionalrecipeingredient collection
+
+(isa OptionalRecipeIngredient ObjectType)
+(genls OptionalRecipeIngredient Instructions)
+;;(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
+
+;; Defining spices
+(isa GaramMasala DefaultDisjointEdibleStuffType)
+(genls GaramMasala Spice)
+
+(isa Ginger DefaultDisjointEdibleStuffType)
+(genls Ginger EdibleStuff)
+
+(isa ChiliPowder DefaultDisjointEdibleStuffType)
+(genls ChiliPowder Spice)
+
+(isa Turmeric DefaultDisjointEdibleStuffType)
+(genls Turmeric Spice)
+
+(isa Cumin DefaultDisjointEdibleStuffType)
+(genls Cumin Spice)
+
+(isa Ghee DefaultDisjointEdibleStuffType)
+(genls Ghee DairyProduct)
+
+(isa CorianderPowder DefaultDisjointEdibleStuffType)
+(genls CorianderPowder Spice)
+
+(isa FenugreekLeaves DefaultDisjointEdibleStuffType)
+(genls FenugreekLeaves Spice)
+
+;;defining virtual fridge collection
+(isa VirtualFridge ExistingObjectType)
+(genls VirtualFridge Pantry)
+;;(comment VirtualFridge “A collection of virtual fridges where each fridge contains the items in the user’s fridge”)
+
+;;defining meat recipe collection
+(isa RecipeMeat ObjectType)
+(genls RecipeMeat Recipe-CW)
+;;(comment RecipeMeat “A collection of recipes that contain meat”)
+
+;;defining dairy recipe
+(isa RecipeDairy ObjectType)
+(genls RecipeDairy Recipe-CW)
+;;(comment RecipeDairy “A collection of recipes that contain dairy”)
+
+;;defining vegetarian recipe
+(isa RecipeVegetarian ObjectType)
+(genls RecipeVegetarian Recipe-CW)
+;;(comment RecipeVegetarian “A collection of recipes that are vegetarian”)
+
+;;defining gluten recipe
+;;(isa RecipeGluten ObjectType)
+(genls RecipeGluten Recipe-CW)
+;;(comment RecipeGluten “A collection of recipes that contain gluten”)
+
+;;defining peanut recipe 
+(isa RecipePeanut ObjectType)
+(genls RecipePeanut Recipe-CW)
+;;(comment RecipePeanut “A collection of recipes that contain peanuts”)
+
+;;defining non-peanut recipes
+(isa RecipeNon-Peanut ObjectType)
+(genls RecipeNon-Peanut Recipe-CW)
+;;(comment RecipeNon-Peanut “A collection of recipes that does not contain peanuts”)
+
+;;defining gluten free recipes
+(isa RecipeGlutenFree ObjectType)
+(genls RecipeGlutenFree Recipe-CW)
+;;(comment RecipeGlutenFree “A collection of recipes that does not contain gluten”)
+
+;;defining vegan recipe 
+(isa RecipeVegan ObjectType)
+(genls RecipeVegan Recipe-CW)
+;;(comment RecipeVegan “A collection of recipes that are vegan”)
+
+
+
+
+
+;; RELATIONS
+
+;;defining requiresIngredients relation
+(isa requiresIngredients Predicate)
+(arity requiresIngredients 2)
+(arg1Isa requiresIngredients Recipe-CW)
+(arg2Isa requiresIngredients RequiredRecipeIngredient)
+;;(comment requiresIngredients "(requiresIngredients ?recipe ?recipeingredientcollection) says that this recipe requires this collection of ingredients")
+
+;;defining optionalIngredient relation
+(isa optionalIngredient Predicate)
+(arity optionalIngredient 2)
+(arg1Isa optionalIngredient Recipe-CW)
+(arg2Isa optionalIngredient OptionalRecipeIngredient)
+;;(comment optionalIngredient "(optionalIngredient ?recipe ?ingredient) says that the ?ingredientcollection is optional in the ?recipe")
+
+;;defining substituteIngredients relation
+(isa substituteIngredients Predicate)
+(arity substituteIngredients 2)
+(arg1Isa substituteIngredients EdibleStuff)
+(arg2Isa substituteIngredients EdibleStuff)
+;;(comment substituteIngredients “(substituteIngredients ?ingredient ?ingredient) says that the ?ingredient can be used as a substitute for the other ?ingredient“)
+
+;;defining meat ingredient
+(isa meatIngredient Predicate)
+(arity meatIngredient 1)
+(arg1Isa meatIngredient EdibleStuff)
+;;(comment meatIngredient “(meatIngredient ?ingredient) says that ?ingredient contains/is meat”)
+
+;;defining dairy ingredient
+(isa dairyIngredient Predicate)
+(arity dairyIngredient 1)
+(arg1Isa dairyIngredient EdibleStuff)
+;;(comment dairyIngredient “(dairyIngredient ?ingredient) says that ?ingredient contains dairy”)
+
+;;defining gluten ingredient
+(isa glutenIngredient Predicate)
+(arity glutenIngredient 1)
+(arg1isa glutenIngredient EdibleStuff)
+;;(comment glutenIngredient “(glutenIngredient ?ingredient) says that ?ingredient contains gluten”)
+
+
+;;defining quantity required relation
+(isa quantityRequired Predicate)
+(arity quantityRequired 4)
+(arg1isa quantityRequired RecipeIngredient)
+(arg2isa quantityRequired EdibleStuff)
+(arg3isa quantityRequired Quantity)
+(arg4isa quantityRequired UnitOfMeasure)
+
+;;defining quantity in fridge relation
+(isa quantityFridge Predicate)
+(arity quantityFridge 4)
+(arg1isa quantityFridge VirtualFridge)
+(arg2isa quantityFridge EdibleStuff)
+(arg3isa quantityFridge Quantity)
+(arg4isa quantityFridge UnitOfMeasure)
+;;(comment quantityFridge “(glutenIngredient ?ingredient ?quantity ?unit) says that the fridge has ?quantity in units ?unit of ?ingredient”)
+
+
+;;defining PastaMarinara recipe
+(isa PastaMarinara Recipe-CW)
+(isa PastaMarinara GlutenRecipe)
+(isa PastaMarinara DairyRecipe)
+(isa PastaMarinaraRequiredIngredients RequiredRecipeIngredient)
+(isa PastaMarinaraOptionalIngredients OptionalRecipeIngredient)
+(requiresIngredients PastaMarinara PastaMarinaraRequiredIngredients)
+(optionalIngredient PastaMarinara PastaMarinaraOptionalIngredients)
+(isa CannedTomato PastaMarinaraRequiredIngredients)
+(quantityRequired PastaMarinaraRequiredIngredients CannedTomato 28 Ounce-UnitOfVolume)
+(isa Garlic PastaMarinaraRequiredIngredients)
+(quantityRequired PastaMarinara Garlic 7 Garlic-Unit-Of-Measure)
+(isa Basil PastaMarinaraOptionalIngredients)
+(quantityRequired PastaMarinara Basil 0.5 Cup-UnitOfVolume)
+(isa OliveOil PastaMarinaraRequiredIngredients)
+(quantityRequired PastaMarinara OliveOil 4 Tablespoon-UnitOfVolume)
+(isa Onion PastaMarinaraRequiredIngredients)
+(quantityRequired PastaMarinara Onion 1 Onion-Unit-Of-Measure)
+(isa Spaghetti PastaMarinaraRequiredIngredients)
+(quantityRequired PastaMarinara Spaghetti 1 Pound-UnitOfMass)
+(isa Butter PastaMarinaraOptionalIngredients)
+(quantityRequired PastaMarinara Butter 1 Pound-Unit-Of-Measure)
+(isa ParmesanGeneric-Cheese PastaMarinaraOptionalIngredients)
+(quantityRequired PastaMarinara ParmesanGeneric-Cheese 2 Tablespoon-UnitOfVolume)
+(isa Oregano PastaMarinaraOptionalIngredients)
+(quantityRequired PastaMarinara Oregano 3 Tablespoon-UnitOfVolume)
+(isa Salt-Table PastaMarinaraOptionalIngredients)
+(quantityRequired PastaMarinara Salt-Table 1 Teaspoon-UnitOfVolume)
+(isa Pepper-TheSpice PastaMarinaraOptionalIngredients)
+(quantityRequired PastaMarinara Pepper-TheSpice 1 Teaspoon-UnitOfVolume)
+;;(comment PastaMarinaraRequiredIngredients “The collection of ingredients that are required in PastaMarinara”)
+;;(comment PastaMarinaraOptionalIngredients “The collection of ingredients that are optional in PastaMarinara”)
+
+
+;; Butter Chicken Recipe
+(isa ButterChicken Recipe-CW)
+(isa ButterChicken DairyRecipe)
+(isa ButterChicken MeatRecipe)
+(isa ButterChickenRequiredIngredients RecipeIngredient)
+(requires ButterChicken ButterChickenRequiredIngredients)
+(optional ButterChicken ButterChickenOptionalIngredients)
+(isa Tomato-FoodStuff ButterChickenRequiredIngredients)
+(quantityRequired ButterChicken Tomato-FoodStuff 14 Ounce-UnitOfVolume)
+(isa Chicken-Meat ButterChickenRequiredIngredients)
+(quantityRequired ButterChicken Chicken-Meat 28 Ounce-UnitOfVolume)
+(isa Yogurt ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken Yogurt 0.5 Cup-UnitOfVolume)
+(isa Garlic ButterChickenRequiredIngredients)
+(quantityRequired ButterChicken Garlic 3 Tablespoon-UnitOfVolume)
+(isa Ginger ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken Ginger 2 Tablespoon-UnitOfVolume)
+(isa GaramMasala ButterChickenRequiredIngredients)
+(quantityRequired ButterChicken GaramMasala 3.5 Teaspoon-UnitOfVolume)
+(isa Turmeric ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken Turmeric 1 Teaspoon-UnitOfVolume)
+(isa Cumin ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken Cumin 2.5 Teaspoon-UnitOfVolume)
+(isa ChiliPowder ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken ChiliPowder 2 Teaspoon-UnitOfVolume)
+(isa TableSalt ButterChickenRequiredIngredients)
+(quantityRequired ButterChicken TableSalt 2.25 Teaspoon-UnitOfVolume)
+(isa OliveOil ButterChickenRequiredIngredients)
+(quantityRequired ButterChicken OliveOil 2 Tablespoon-UnitOfVolume)
+(isa Ghee ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken Ghee 2 Tablespoon-UnitOfVolume)
+(isa Onion ButterChickenRequiredIngredients)
+(quantityRequired ButterChicken Onion 1 Onion-Unit-Of-Measure)
+(isa CorianderPowder ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken CorianderPowder 1 Teaspoon-UnitOfVolume)
+(isa Cream-Dairy ButterChickenRequiredIngredients)
+(quantityRequired ButterChicken Cream-Dairy 1 Cup-UnitOfVolume)
+(isa Sugar-Table ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken Sugar-Table 1 Tablespoon-UnitOfVolume)
+(isa FenugreekLeaves ButterChickenOptionalIngredients)
+(quantityRequired ButterChicken FenugreekLeaves 0.5 Teaspoon-UnitOfVolume)
+
+
+
+
+;;; Virtual Fridge
+(isa CannedTomato VirtualFridge)
+(quantityFridge VirtualFridge CannedTomato 28 Ounce-UnitOfVolume)
+(isa garlic VirtualFridge)
+(quantityFridge VirtualFridge Garlic 7 Garlic-Unit-Of-Measure)
+(isa Basil VirtualFridge)
+(quantityFridge VirtualFridge Basil 0.5 Cup-UnitOfVolume)
+(isa OliveOil VirtualFridge)
+(quantityFridge VirtualFridge OliveOil 4 Tablespoon-UnitOfVolume)
+(isa Onion VirtualFridge)
+(quantityFridge VirtualFridge Onion 1 Onion-Unit-Of-Measure)
+(isa Spaghetti VirtualFridge)
+(quantityFridge VirtualFridge Spaghetti 1 Pound-UnitOfMass)
+(isa Butter VirtualFridge)
+(quantityFridge VirtualFridge Spaghetti 1 Pound-Unit-Of-Measure)
+(isa Oregano VirtualFridge)
+(quantityFridge VirtualFridge Oregano 1 Tablespoon-UnitOfVolume)
+(isa Salt VirtualFridge)
+(isa Pepper VirtualFridge)
+
+
+
+
+
+

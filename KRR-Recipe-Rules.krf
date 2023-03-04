@@ -1,0 +1,21 @@
+(in-microtheory KRR-Recipe-RulesMt)
+(genlMt KRR-Recipe-RulesMt KRR-Recipe-FactsMt)
+
+;; (ingredientsPresent ?virtualFridge ?recipe)
+(<== (ingredientsPresent ?virtualFridge ?recipe)
+         (requiresIngredients ?recipe ?recipeIngredient)
+         (isa ?ingredient1 ?recipeIngredient)
+         (or (isa ?ingredient1 ?virtualFridge)
+               (and (subsituteIngredients ?ingredient1 ?ingredient2)
+                        (isa ?ingredient2 ?virtualFridge))))
+
+
+;; get list of ingredients and quantity
+(<== (getIngredients ?recipe ?ingredient ?quantity ?UnitOfMeasure)
+      (requiresIngredients ?recipe ?collection)
+      (optionalIngredient ?recipie ?collection2)
+      (or (isa ?ingredient ?collection)
+          (isa ?ingredient ?collection2))
+      (quantityRequired ?recipe ?ingredient ?quantity ?UnitOfMeasure))
+
+
