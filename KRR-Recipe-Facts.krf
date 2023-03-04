@@ -241,6 +241,8 @@
 
 
 
+
+
 ;;; Virtual Fridge
 (isa CannedTomato VirtualFridge)
 (quantityFridge VirtualFridge CannedTomato 28 Ounce-UnitOfVolume)
