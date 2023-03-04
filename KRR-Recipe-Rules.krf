@@ -18,4 +18,14 @@
           (isa ?ingredient ?collection2))
       (quantityRequired ?recipe ?ingredient ?quantity ?UnitOfMeasure))
 
+;; get recipes that are able to be cooked based on quantities and serving size
+(<== (canCook ?virtualFridge ?recipe ?serving)
+    (ingredientsPresent ?virtualFridge ?recipe)
+    (requiresIngredients ?recipe ?recipeingredient)
+    (isa ?ingredient ?recipeIngredient)
+    (quantityRequired ?recipe ?recipeIngredient ?quantity ?unit)
+    (quantityFridge ?ingredient  ?quantity2 ?unit)
+    (greaterThanOrEqualTo ?quantity2 (TimesFn ?quantity ?serving))
+
+;; get recipes that are able to be cooked and should be cooked based on user preferences
 

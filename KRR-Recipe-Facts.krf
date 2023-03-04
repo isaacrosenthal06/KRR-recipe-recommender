@@ -9,19 +9,22 @@
 ;;defining recipe ingredient 
 (isa RecipeIngredient ObjectType)
 (genls RecipeIngredient Instructions)
-;;(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
+(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
 
+;;defining user preferences 
+(isa UserPreference FirstOrderCollection)
+(genls UserPreference Preference)
 
 ;;defining the requiredrecipeingredient collection
 (isa RequiredRecipeIngredient ObjectType)
 (genls RequiredRecipeIngredient Instructions)
-;;(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
+(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
 
 ;;defining the optionalrecipeingredient collection
 
 (isa OptionalRecipeIngredient ObjectType)
 (genls OptionalRecipeIngredient Instructions)
-;;(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
+(comment RecipeIngredient “A collection of ingredients that pertain to a recipe”)
 
 ;; Defining spices
 (isa GaramMasala DefaultDisjointEdibleStuffType)
@@ -51,47 +54,47 @@
 ;;defining virtual fridge collection
 (isa VirtualFridge ExistingObjectType)
 (genls VirtualFridge Pantry)
-;;(comment VirtualFridge “A collection of virtual fridges where each fridge contains the items in the user’s fridge”)
+(comment VirtualFridge “A collection of virtual fridges where each fridge contains the items in the user’s fridge”)
 
 ;;defining meat recipe collection
 (isa RecipeMeat ObjectType)
 (genls RecipeMeat Recipe-CW)
-;;(comment RecipeMeat “A collection of recipes that contain meat”)
+(comment RecipeMeat “A collection of recipes that contain meat”)
 
 ;;defining dairy recipe
 (isa RecipeDairy ObjectType)
 (genls RecipeDairy Recipe-CW)
-;;(comment RecipeDairy “A collection of recipes that contain dairy”)
+(comment RecipeDairy “A collection of recipes that contain dairy”)
 
 ;;defining vegetarian recipe
 (isa RecipeVegetarian ObjectType)
 (genls RecipeVegetarian Recipe-CW)
-;;(comment RecipeVegetarian “A collection of recipes that are vegetarian”)
+(comment RecipeVegetarian “A collection of recipes that are vegetarian”)
 
 ;;defining gluten recipe
-;;(isa RecipeGluten ObjectType)
+(isa RecipeGluten ObjectType)
 (genls RecipeGluten Recipe-CW)
-;;(comment RecipeGluten “A collection of recipes that contain gluten”)
+(comment RecipeGluten “A collection of recipes that contain gluten”)
 
 ;;defining peanut recipe 
 (isa RecipePeanut ObjectType)
 (genls RecipePeanut Recipe-CW)
-;;(comment RecipePeanut “A collection of recipes that contain peanuts”)
+(comment RecipePeanut “A collection of recipes that contain peanuts”)
 
 ;;defining non-peanut recipes
 (isa RecipeNon-Peanut ObjectType)
 (genls RecipeNon-Peanut Recipe-CW)
-;;(comment RecipeNon-Peanut “A collection of recipes that does not contain peanuts”)
+(comment RecipeNon-Peanut “A collection of recipes that does not contain peanuts”)
 
 ;;defining gluten free recipes
 (isa RecipeGlutenFree ObjectType)
 (genls RecipeGlutenFree Recipe-CW)
-;;(comment RecipeGlutenFree “A collection of recipes that does not contain gluten”)
+(comment RecipeGlutenFree “A collection of recipes that does not contain gluten”)
 
 ;;defining vegan recipe 
 (isa RecipeVegan ObjectType)
 (genls RecipeVegan Recipe-CW)
-;;(comment RecipeVegan “A collection of recipes that are vegan”)
+(comment RecipeVegan “A collection of recipes that are vegan”)
 
 
 
@@ -104,39 +107,39 @@
 (arity requiresIngredients 2)
 (arg1Isa requiresIngredients Recipe-CW)
 (arg2Isa requiresIngredients RequiredRecipeIngredient)
-;;(comment requiresIngredients "(requiresIngredients ?recipe ?recipeingredientcollection) says that this recipe requires this collection of ingredients")
+(comment requiresIngredients "(requiresIngredients ?recipe ?recipeingredientcollection) says that this recipe requires this collection of ingredients")
 
 ;;defining optionalIngredient relation
 (isa optionalIngredient Predicate)
 (arity optionalIngredient 2)
 (arg1Isa optionalIngredient Recipe-CW)
 (arg2Isa optionalIngredient OptionalRecipeIngredient)
-;;(comment optionalIngredient "(optionalIngredient ?recipe ?ingredient) says that the ?ingredientcollection is optional in the ?recipe")
+(comment optionalIngredient "(optionalIngredient ?recipe ?ingredient) says that the ?ingredientcollection is optional in the ?recipe")
 
 ;;defining substituteIngredients relation
 (isa substituteIngredients Predicate)
 (arity substituteIngredients 2)
 (arg1Isa substituteIngredients EdibleStuff)
 (arg2Isa substituteIngredients EdibleStuff)
-;;(comment substituteIngredients “(substituteIngredients ?ingredient ?ingredient) says that the ?ingredient can be used as a substitute for the other ?ingredient“)
+(comment substituteIngredients “(substituteIngredients ?ingredient ?ingredient) says that the ?ingredient can be used as a substitute for the other ?ingredient“)
 
 ;;defining meat ingredient
 (isa meatIngredient Predicate)
 (arity meatIngredient 1)
 (arg1Isa meatIngredient EdibleStuff)
-;;(comment meatIngredient “(meatIngredient ?ingredient) says that ?ingredient contains/is meat”)
+(comment meatIngredient “(meatIngredient ?ingredient) says that ?ingredient contains/is meat”)
 
 ;;defining dairy ingredient
 (isa dairyIngredient Predicate)
 (arity dairyIngredient 1)
 (arg1Isa dairyIngredient EdibleStuff)
-;;(comment dairyIngredient “(dairyIngredient ?ingredient) says that ?ingredient contains dairy”)
+(comment dairyIngredient “(dairyIngredient ?ingredient) says that ?ingredient contains dairy”)
 
 ;;defining gluten ingredient
 (isa glutenIngredient Predicate)
 (arity glutenIngredient 1)
 (arg1isa glutenIngredient EdibleStuff)
-;;(comment glutenIngredient “(glutenIngredient ?ingredient) says that ?ingredient contains gluten”)
+(comment glutenIngredient “(glutenIngredient ?ingredient) says that ?ingredient contains gluten”)
 
 
 ;;defining quantity required relation
@@ -146,6 +149,7 @@
 (arg2isa quantityRequired EdibleStuff)
 (arg3isa quantityRequired Quantity)
 (arg4isa quantityRequired UnitOfMeasure)
+(comment quantityRequired "relation which indicates the quantity required of an ingredient in a recipe")
 
 ;;defining quantity in fridge relation
 (isa quantityFridge Predicate)
@@ -154,7 +158,7 @@
 (arg2isa quantityFridge EdibleStuff)
 (arg3isa quantityFridge Quantity)
 (arg4isa quantityFridge UnitOfMeasure)
-;;(comment quantityFridge “(glutenIngredient ?ingredient ?quantity ?unit) says that the fridge has ?quantity in units ?unit of ?ingredient”)
+(comment quantityFridge “(glutenIngredient ?ingredient ?quantity ?unit) says that the fridge has ?quantity in units ?unit of ?ingredient”)
 
 
 ;;defining PastaMarinara recipe
@@ -187,8 +191,8 @@
 (quantityRequired PastaMarinara Salt-Table 1 Teaspoon-UnitOfVolume)
 (isa Pepper-TheSpice PastaMarinaraOptionalIngredients)
 (quantityRequired PastaMarinara Pepper-TheSpice 1 Teaspoon-UnitOfVolume)
-;;(comment PastaMarinaraRequiredIngredients “The collection of ingredients that are required in PastaMarinara”)
-;;(comment PastaMarinaraOptionalIngredients “The collection of ingredients that are optional in PastaMarinara”)
+(comment PastaMarinaraRequiredIngredients “The collection of ingredients that are required in PastaMarinara”)
+(comment PastaMarinaraOptionalIngredients “The collection of ingredients that are optional in PastaMarinara”)
 
 
 ;; Butter Chicken Recipe
@@ -232,7 +236,8 @@
 (quantityRequired ButterChicken Sugar-Table 1 Tablespoon-UnitOfVolume)
 (isa FenugreekLeaves ButterChickenOptionalIngredients)
 (quantityRequired ButterChicken FenugreekLeaves 0.5 Teaspoon-UnitOfVolume)
-
+(comment ButterChickenRequiredIngredients “The collection of ingredients that are required in ButterChicken”)
+(comment ButterChickenOptionalIngredients “The collection of ingredients that are optional in ButterChicken”)
 
 
 
