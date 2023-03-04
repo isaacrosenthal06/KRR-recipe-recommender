@@ -1,5 +1,33 @@
 from owlready2 import *
 
+
+
+def isa(instance, collection):
+    if instance in collection:
+        return True
+    else:
+        return False
+    
+def genls(collection1, collection2):
+    if collection1.issubset(collection2) and collection1 != collection2:
+        return True
+    else:
+        return False
+
+def specs(collection1, collection2):
+    if collection2.issubset(collection1) and collection1 != collection2:
+        return True
+    else:
+        return False
+
+
+
+
+    
+
+
+
+
 onto = get_ontology("http://test.org/onto.owl")
 
 with onto:
