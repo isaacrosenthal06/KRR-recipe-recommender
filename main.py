@@ -1,5 +1,33 @@
 from owlready2 import *
 
+
+
+def isa(instance, collection):
+    if instance in collection:
+        return True
+    else:
+        return False
+    
+def genls(collection1, collection2):
+    if collection1.issubset(collection2) and collection1 != collection2:
+        return True
+    else:
+        return False
+
+def specs(collection1, collection2):
+    if collection2.issubset(collection1) and collection1 != collection2:
+        return True
+    else:
+        return False
+
+
+
+
+    
+
+
+
+
 onto = get_ontology("http://test.org/onto.owl")
 
 with onto:
@@ -45,6 +73,20 @@ with onto:
 
     class Fish(Seafood): pass
     class Shellfish(Seafood): pass
+    #subclassing condiments
+    class Oil(Condiment): pass
+    class Sauce(Condiment): pass
+    class Spice(Condiment): pass
+
+    #subclassing oil
+    class OliveOil(Oil): pass
+    class CanolaOil(Oil): pass
+    class Lard(Oil): pass
+
+    #subclassing 
+    class Salt(Spices): pass
+    class Pepper(Spices): pass
+
 
     class Pork(RedMeat): pass
     class Lamb(RedMeat): pass
@@ -54,7 +96,14 @@ with onto:
     class Chicken(WhiteMeat): pass
     class Turkey(WhiteMeat): pass
 
+<<<<<<< HEAD
     class requires(Ingredient >> Recipe): pass
+=======
+    
+    
+
+>>>>>>> 7fce0ee6dd3895d91c422385edc804cf84d71222
+>>>>>>> e5f11578a96160a0d26de5aa76a1ff73bb221589
     
     
     #defining the relationship between coffee and roast
