@@ -75,16 +75,16 @@ function UpdateFridge() {
             text += " ";
             text += unit;
             if (unit === name || name === "Onion-Foodstuff") {
-                text += "-UnitofMeasure)";
+                text += "-UnitOfMeasure)";
                 text += "\n(isa ";
                 text += unit;
-                text += "-UnitofMeasure UnitofMeasure)";
+                text += "-UnitofMeasure UnitOfMeasure)";
             }
             if (["Ounce", "Cup", "Tablespoon", "Teaspoon"].includes(unit)) {
-                text += "-UnitofVolume)";
+                text += "-UnitOfVolume)";
             }
             if (unit === "Pound") {
-                text += "-UnitofMass)"
+                text += "-UnitOfMass)"
             }
             
             
@@ -178,6 +178,7 @@ function UpdateFridge() {
                     value={ingredient.unit}
                     onChange={(e) => handleIngredientChange(e, index)}
                     />
+
                 </label>
             </div>
             ))}
