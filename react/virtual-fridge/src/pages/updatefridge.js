@@ -73,11 +73,21 @@ function UpdateFridge() {
             text += " ";
             text += quantity;
             text += " ";
-            text += name;
-            text += "-UnitofMeasure)";
-            text += "\n(isa ";
             text += unit;
-            text += "-UnitofMeasure UnitofMeasure)";
+            if (unit === name || name === "Onion-Foodstuff") {
+                text += "-UnitofMeasure)";
+                text += "\n(isa ";
+                text += unit;
+                text += "-UnitofMeasure UnitofMeasure)";
+            }
+            if (["Ounce", "Cup", "Tablespoon", "Teaspoon"].includes(unit)) {
+                text += "-UnitofVolume)";
+            }
+            if (unit === "Pound") {
+                text += "-UnitofMass)"
+            }
+            
+            
         }
 
         if (pref.vegetarian === true) {
