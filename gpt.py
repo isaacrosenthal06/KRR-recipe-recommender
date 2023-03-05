@@ -1,8 +1,7 @@
 from owlready2 import *
 
 # create a new ontology
-onto = Ontology("http://www.example.org/recipe_ontology.owl")
-
+onto = Ontology("http://test.org/onto.owl")
 # define classes
 class Recipe(Thing):
     pass
