@@ -3,9 +3,18 @@ from owlready2 import *
 onto = get_ontology("http://test.org/onto.owl")
 
 with onto:
+    class User(Thing): pass
     class Food(Thing): pass
-    class Ingredient(Food): pass
-    class Recipe(Food): pass
+    class Recipe(Thing): pass
+    class Ingredient(Thing): pass
+    class Step(Thing): pass
+    class Quantity(Thing): pass
+    class DietaryRestrictions(Thing): pass
+
+    #class Vegetarian(DietaryRestrictions): pass
+
+    #class Ingredient(Food): pass
+    #class Recipe(Food): pass
     
     #related information can also be captured as classes
     class Produce(Food): pass
@@ -18,6 +27,7 @@ with onto:
     class Fruit(Produce): pass
     class Vegetable(Produce): pass
     class Herb(Produce): pass
+    class Tomato(Fruit): pass
 
     class Flour(Grain): pass
     class Oat(Grain): pass
@@ -25,10 +35,9 @@ with onto:
     class Pasta(Grain): pass
     class Rice(Grain): pass
 
-<<<<<<< HEAD
     class Lactose(Dairy): pass
+    class Cheese(Lactose): pass
     class NonLactose(Dairy): pass
-=======
 
     class Seafood(Meat): pass
     class RedMeat(Meat): pass
@@ -45,27 +54,24 @@ with onto:
     class Chicken(WhiteMeat): pass
     class Turkey(WhiteMeat): pass
 
-    
-    class Region(Thing): pass
-    
-    class Latin_America(Region): pass
-    class Asia_Pacific(Region): pass
-    class Multi(Region): pass
->>>>>>> 7fce0ee6dd3895d91c422385edc804cf84d71222
+    class requires(Ingredient >> Recipe): pass
     
     
     #defining the relationship between coffee and roast
-    class hasIngredient(ObjectProperty, FunctionalProperty):
-        domain = [Ingredient, Recipe]
-        region = [Produce, Meat, Dairy, Grain, Condiment]
+    # class hasIngredient(ObjectProperty, FunctionalProperty):
+    #     domain = [Recipe]
+    #     region = [Food]
     
     
     #FunctionalProperties mean it can only be related to one; these coffees can only be grown in one region
     # class from_region(Coffee >> Region, FunctionalProperty):
     #     pass
     
-    # class TomatoPasta(Recipe):
-    #     equivalent_to = [Recipe & hasIngredient.value(Grain) & hasIngredient.value(Produce)]
+    # class Vegetarian(DietaryRestrictions):
+    #     equivalent_to = [DietaryRestrictions & hasIngredient.value(Meat)]
+
+    class hasIngredient(User >> Ingredient): pass
+    class hasQuantity(User >> Quantity): pass
     
     #defining the characteristics for a specific coffee type or line
     # class Veranda(Coffee):
@@ -81,7 +87,7 @@ with onto:
         
 
 #telling the ontology these are all different things
-# AllDifferent([Dark_Roast, Blonde_Roast, Medium_Roast])
+#AllDifferent([Produce, Grain, Meat, Dairy, Condiment])
 # AllDifferent([Latin_America, Asia_Pacific, Multi])
 
 #defining some unknown coffees and their characteristics
@@ -90,10 +96,45 @@ with onto:
 
 # print("Coffee 1 is: ", coffee1.is_a)
 # print("Coffee 2 is: ", coffee2.is_a)
-tomato_pasta = Recipe(hasIngredient = Grain)
-print("Tomato Pasta:", tomato_pasta.is_a)
+#tomato_pasta = Recipe(hasIngredient = Grain)
+#print("Tomato Pasta:", TomatoPasta.is_a)
 
 #closing the world, by default we have an open world, anything not restricted is possible
-close_world(Ingredient)
+# close_world(Food)
 
-sync_reasoner()
+# sync_reasoner()
+
+user = User("kat")
+
+while True:
+    ingredient = input("Enter an ingredient in your fridge or done if finished: ")
+    if ingredient.lower() == "done":
+        break
+    quantity = input(f"How much {ingredient} do you have?")
+
+i = Ingredient(ingredient)
+q = Quantity(quantity)
+
+user.hasIngredient.append(i)
+user.hasQuantity.append(q)
+
+query = """
+SELECT ?recipe
+WHERE {
+    ?recipe a :Recipe .
+    ?recipe :has_step ?step .
+    ?step :requires ?ingredient .
+    FILTER NOT EXISTS {
+        ?user :has_ingredient ?ingredient .
+        ?user :has_quantity ?quantity .
+        ?ingredient :requires ?recipe .
+        ?ingredient :requires_quantity ?qty .
+        FILTER(?qty > ?quantity)
+    }
+}
+"""
+
+# execute the query on the ontology and print the resulting recipes
+results = onto.query(query, initBindings={"user": user})
+for result in results:
+    print(result)
