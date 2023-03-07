@@ -54,6 +54,71 @@ const About = () => {
                     waste, and foster healthier eating habits. Our goal is to create a 
                     seamless, user-friendly platform that integrates with your busy 
                     lifestyle and enhances your relationship with food.
+                    
+                </p>
+            </section>
+
+            <section class="section">
+
+                <h1 class="text-big">
+                    Knowledge Base and Reasoning
+                </h1>
+
+                <p class="text-small">
+
+                    We represented your fridge, ingredients, recipies, dietary preferences, and 
+                    everything else needed to create relevant recipies in a knowledge base. 
+                </p>
+                <p class="text-small">
+                    
+                    Our ingredients consist of many ingredients ingredients  already defined in NextKB, 
+                    but also several including garam masala, canned tomatoes, etc. that were not. All 
+                    ingredients contain predicates which report which dietary preferences each 
+                    ingredient violates (eg. Chicken is not dairy, but it is meat: (not 
+                    (dairyIngredient Chicken-Meat)) (meatIngredient Chicken-Meat)). Each ingredient also 
+                    includes potential substitute ingredients to recommend if the primary ingredient is 
+                    not in the virtual fridge.
+                </p>
+                <p class="text-small">
+                    Your fridge is represented by collection called VirtualFridge with instances of 
+                    ingredients. The quantity and unit of each ingredient in the fridge is stored in 
+                    a relation called quantityFridge. 
+                </p>
+                <p class="text-small">
+
+                    Recipies are represented as two collections of ingredients—one of required ingredients 
+                    and one of optional ingredients. The ingredients in each collection are included in the 
+                    relation quantityRequired which includes recipie, ingredient, amount, and unit necessary 
+                    for the recipie. 
+                </p>
+                <p class="text-small">
+
+                    When the user inputs their ingredients in their fridge and their dietary preferences, 
+                    the ontology is built and the users can query using horn cluses like should cook, which 
+                    finds and confirms recipies that match the users ingredients and shouldCook, which finds and confirms recipies that 
+                    match the users preferences. These horn clauses serve as proof of concept for a larger 
+                    ontology which could utilize knowledge and reasoning to recommend recipies. 
+
+                </p>
+            </section>
+
+            <section class="section">
+
+                <h1 class="text-big">
+                    Opportunity
+                </h1>
+
+                <p class="text-small">
+
+                    At Virtual Fridge, our mission is to make cooking and meal 
+                    planning effortless and enjoyable by helping people keep track 
+                    of what's in their fridge and suggesting personalized recipe ideas. 
+                    We believe that technology can simplify our daily lives and bring 
+                    us closer to the food we eat. By leveraging data and AI, we strive 
+                    to empower our users to make informed food choices, reduce food 
+                    waste, and foster healthier eating habits. Our goal is to create a 
+                    seamless, user-friendly platform that integrates with your busy 
+                    lifestyle and enhances your relationship with food.
                 </p>
             </section>
 
