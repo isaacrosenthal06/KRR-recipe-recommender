@@ -12,3 +12,18 @@ The instructions below require a Mac OS.
 10. Navigate to Companions. Double click on “Instructor Manager” and click on “Upload flat file” to upload the .krf file you just downloaded.
 11. Navigate to “Query” and you are now ready to test the queries.
 12. Here is a list of queries our application currently supports:
+    - To display all the required and optional ingredients with their quantities and units needed for an inputted recipe, use this query:
+          (getIngredients Recipe ?ingredient ?quantity ?unit)
+    - To display all the recipes that the virtual fridge has the required ingredients for, use this query:
+          (ingredientsPresent VirtualFridge ?recipe)
+      Note: this query does not take quantity into account. However, it is useful because the user might have a negligible difference in the amount on           hand and the amount in the fridge.
+    - To display all the recipes that the user can cook based on the ingredients and quantities on hand, use this query:
+          (canCook VirtualFridge ?recipe)
+      Note: this query does not take preferences into account, However, it is useful because the user might make substitutions to recipes that are not           supported in this prototype.
+    - To display all recipes that the user should cook based on preferences and can cook based on the quantities of ingredients on hand, use this query: 
+          (shouldCook ?recipe UserPreference VirtualFridge)
+    - After receiving a recommended recipe using the shouldCook query, the user can now use shouldCooksubstitute to tell them which ingredients to               substitute to make the recipe appeal to their preferences:
+          (shouldCooksubstitute Recipe UserPreference VirtualFridge ?ingredient ?substitute)
+      Note: If the user does not have any dietary restrictions, this query should not be used. This query displays all ingredients needed to substitute,         and their corresponding substitutions based on what is on hand. 
+    - This query delivers recommended ingredients to add based on what’s on hand. The user inputs a recipe and their virtual fridge, and this query will         display all potential additions they can make to make the recipe more tasty:
+           (optionalRecommendations Recipe VirtualFridge ?recommendedingredient) 
